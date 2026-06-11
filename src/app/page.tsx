@@ -5,6 +5,7 @@ import { Experience } from "@/components/Experience"
 import { Process } from "@/components/Process"
 import { About } from "@/components/About"
 import { Learning } from "@/components/Learning"
+import { Testimonials } from "@/components/Testimonials"
 import { Contact } from "@/components/Contact"
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Process />
       <About />
       <Learning />
+      <Testimonials />
       <Contact />
     </main>
   )

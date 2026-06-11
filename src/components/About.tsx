@@ -1,13 +1,55 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Terminal, User, Code2, Cpu } from "lucide-react"
+import { Terminal, User, Code2, Server, Cloud, Cpu } from "lucide-react"
 
 const terminalLines = [
   { cmd: "whoami", res: "Vinith Sai Reddy" },
   { cmd: "role", res: "Full Stack & App Developer" },
   { cmd: "focus", res: "Building scalable web and mobile applications" },
   { cmd: "current_project", res: "Keliri" },
+]
+
+const skillGroups = [
+  {
+    icon: Code2,
+    label: "Languages",
+    color: "text-blue-400",
+    bg: "bg-blue-500/10",
+    border: "border-blue-500/20",
+    skills: ["JavaScript", "TypeScript", "Python", "Java"],
+  },
+  {
+    icon: Server,
+    label: "Frameworks",
+    color: "text-violet-400",
+    bg: "bg-violet-500/10",
+    border: "border-violet-500/20",
+    skills: ["React", "Next.js", "React Native", "Spring Boot", "Node.js", "Express"],
+  },
+  {
+    icon: Cpu,
+    label: "AI & ML",
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/10",
+    border: "border-emerald-500/20",
+    skills: ["TensorFlow", "YOLOv8", "LangChain", "OpenCV", "Scikit-learn"],
+  },
+  {
+    icon: Cloud,
+    label: "Cloud & Tools",
+    color: "text-orange-400",
+    bg: "bg-orange-500/10",
+    border: "border-orange-500/20",
+    skills: ["AWS EC2", "Amazon S3", "Docker", "Git", "MongoDB", "PostgreSQL"],
+  },
+]
+
+const highlights = [
+  { label: "CGPA", value: "8.2 / 10" },
+  { label: "Internship", value: "6 months" },
+  { label: "Apps Shipped", value: "7 live" },
+  { label: "API Integrations", value: "15+" },
 ]
 
 export function About() {
@@ -19,7 +61,7 @@ export function About() {
       <div className="absolute -right-40 bottom-40 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -32,7 +74,8 @@ export function About() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        {/* Top: Terminal + Intro */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
           {/* Terminal Window */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -54,17 +97,17 @@ export function About() {
                   <Terminal className="w-3 h-3" />
                   vinith@portfolio ~
                 </div>
-                <div className="w-16" /> {/* Spacer for centering */}
+                <div className="w-16" />
               </div>
-              
+
               {/* Terminal Content */}
               <div className="p-6 md:p-8 font-mono text-sm md:text-base min-h-[280px]">
                 {terminalLines.map((line, idx) => (
-                  <motion.div 
-                    key={idx} 
+                  <motion.div
+                    key={idx}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 + (idx * 0.1) }}
+                    transition={{ duration: 0.4, delay: 0.4 + idx * 0.1 }}
                     viewport={{ once: true }}
                     className="mb-6 last:mb-0"
                   >
@@ -77,7 +120,7 @@ export function About() {
                     </div>
                   </motion.div>
                 ))}
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: [0, 1, 0] }}
                   transition={{ duration: 1, repeat: Infinity }}
@@ -90,7 +133,7 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Text Content */}
+          {/* Personal Intro + Highlights */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -104,27 +147,85 @@ export function About() {
                 Who I Am
               </div>
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-                Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">Digital Experiences</span>
+                Engineering{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
+                  Digital Experiences
+                </span>
               </h3>
-              <p className="text-lg text-secondary-foreground leading-relaxed">
-                I am a passionate Full Stack Developer with a strong focus on creating elegant, highly-performant solutions to complex technical problems. 
+              <p className="text-lg text-secondary-foreground leading-relaxed mb-4">
+                I&apos;m a Full Stack Developer who gets excited about building things that actually ship.
+                From cross-platform mobile apps to AI-powered backends, I focus on clean code, real outcomes, and products people enjoy using.
+              </p>
+              <p className="text-base text-secondary-foreground leading-relaxed">
+                Currently pursuing my B.E. in Computer Science at Bangalore Institute of Technology and actively looking for my next challenge — internship or full-time.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
-                <Code2 className="w-6 h-6 text-primary mb-3" />
-                <h4 className="text-white font-semibold mb-2">Modern Web</h4>
-                <p className="text-sm text-secondary-foreground">Building scalable applications using Next.js, React, and robust backend architectures.</p>
-              </div>
-              <div className="p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
-                <Cpu className="w-6 h-6 text-primary mb-3" />
-                <h4 className="text-white font-semibold mb-2">AI & Machine Learning</h4>
-                <p className="text-sm text-secondary-foreground">Integrating deep learning pipelines and intelligent features into production apps.</p>
-              </div>
+            {/* Highlight stats */}
+            <div className="grid grid-cols-2 gap-3">
+              {highlights.map((h, idx) => (
+                <motion.div
+                  key={h.label}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5 + idx * 0.07 }}
+                  viewport={{ once: true }}
+                  className="p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors"
+                >
+                  <p className="text-2xl font-bold text-white mb-1">{h.value}</p>
+                  <p className="text-xs text-white/40 uppercase tracking-wider font-mono">{h.label}</p>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
+
+        {/* Bottom: Skill Groups */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex items-center gap-4 mb-10">
+            <div className="flex-1 h-px bg-white/5" />
+            <span className="text-xs font-mono uppercase tracking-widest text-white/30">
+              Skills & Stack
+            </span>
+            <div className="flex-1 h-px bg-white/5" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {skillGroups.map((group, idx) => {
+              const Icon = group.icon
+              return (
+                <motion.div
+                  key={group.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 + idx * 0.08 }}
+                  viewport={{ once: true }}
+                  className={`p-5 rounded-2xl bg-gradient-to-br ${group.bg} border ${group.border} hover:scale-[1.02] transition-transform duration-300`}
+                >
+                  <div className={`flex items-center gap-2 ${group.color} mb-4`}>
+                    <Icon className="w-4 h-4" />
+                    <span className="text-sm font-semibold">{group.label}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-2.5 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/70 font-mono"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   )
